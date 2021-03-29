@@ -1,5 +1,6 @@
 package ru.diolloyd.webuiat.lesson6;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -25,11 +26,13 @@ public class BoardPage {
         return element.getAttribute("innerText");
     }
 
+    @Step
     public void goToBoard(){
         driver.get(url);
         getActualBoardName();
     }
 
+    @Step
     public void createList(String listName) {
         driver.findElement(By.cssSelector("#board")).click();
         driver.findElement(By.cssSelector(".js-add-list")).click();
@@ -38,6 +41,7 @@ public class BoardPage {
         driver.findElement(By.cssSelector(".list-name-input")).submit();
     }
 
+    @Step
     public void deleteBoard() {
         driver.get(url);
         String display = driver.findElement(By.cssSelector(".board-menu")).getCssValue("display");
@@ -49,6 +53,7 @@ public class BoardPage {
         driver.findElement(By.cssSelector(".pop-over .js-confirm")).click();
     }
 
+    @Step
     public void addCardToList(String listName, String cardText) {
         driver.findElement(By.xpath(String.format(
                 "//h2[contains(@class,'list-header-name-assist') and child::text()='%s']" +

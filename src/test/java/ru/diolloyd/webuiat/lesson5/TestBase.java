@@ -1,6 +1,8 @@
 package ru.diolloyd.webuiat.lesson5;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Description;
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -36,6 +38,7 @@ class TestBase {
     }
 
     @Test
+    @Description(value = "Authorization")
     void testLogin() {
         new AuthorizationPage(driver)
                 .openPage()
@@ -57,6 +60,7 @@ class TestBase {
         }
 
         @Test
+        @Description(value = "Create Board")
         void createBoardTest() {
             String boardName = "AT Empty Board";
             HomePage homePage = new HomePage(driver);
@@ -88,6 +92,7 @@ class TestBase {
                     boardPage.goToBoard();
                 }
 
+                @Description(value = "Create List")
                 @Test
                 void createListTest() {
                     String listName = "ListForListTest";
@@ -96,6 +101,7 @@ class TestBase {
                     assertTrue(expected.size() > 0);
                 }
 
+                @Description("Add Card to List")
                 @Test
                 void addCardToListTest() {
                     String listName = "ListForCardTest";
@@ -103,7 +109,6 @@ class TestBase {
                     boardPage.createList(listName);
                     boardPage.addCardToList(listName, cardText);
                     List<WebElement> expected = boardPage.findCardsInList(listName, cardText);
-                    System.out.println("add card test " + expected.size());
                     assertTrue(expected.size() > 0);
                 }
             }

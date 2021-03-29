@@ -1,5 +1,6 @@
 package ru.diolloyd.webuiat.lesson6;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -10,6 +11,7 @@ public class HomePage {
         this.driver = driver;
     }
 
+    @Step
     public BoardPage createBoard(String boardName) {
         driver.findElement(By.cssSelector("[data-test-id=create-board-tile]")).click();
         driver.findElement(By.cssSelector("[data-test-id=create-board-title-input]")).click();
@@ -20,6 +22,7 @@ public class HomePage {
         return boardPage;
     }
 
+    @Step
     public String getActualLogin() {
         driver.findElement(By.cssSelector("[data-test-id=header-member-menu-button]")).click();
         String actualLogin = driver.findElement(By.cssSelector("[data-test-id=header-member-menu-popover] nav>ul>div>div:nth-child(2)>span")).getText();
