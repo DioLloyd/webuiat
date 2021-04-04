@@ -11,7 +11,7 @@ public class HomePage {
         this.driver = driver;
     }
 
-    @Step
+    @Step("Create board")
     public BoardPage createBoard(String boardName) {
         driver.findElement(By.cssSelector("[data-test-id=create-board-tile]")).click();
         driver.findElement(By.cssSelector("[data-test-id=create-board-title-input]")).click();
@@ -22,7 +22,7 @@ public class HomePage {
         return boardPage;
     }
 
-    @Step
+    @Step("Get actual login")
     public String getActualLogin() {
         driver.findElement(By.cssSelector("[data-test-id=header-member-menu-button]")).click();
         String actualLogin = driver.findElement(By.cssSelector("[data-test-id=header-member-menu-popover] nav>ul>div>div:nth-child(2)>span")).getText();
